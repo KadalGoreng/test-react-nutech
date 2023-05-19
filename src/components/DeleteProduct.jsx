@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { toast } from "react-toastify";
 
-export default function DeleteProduct(props) {
+const DeleteProduct = (props) => {
   const { id, barang, setBarang } = props;
 
   const [modal, setModal] = useState(false);
@@ -51,4 +51,6 @@ export default function DeleteProduct(props) {
       </div>
     </div>
   );
-}
+};
+
+export default DeleteProduct;

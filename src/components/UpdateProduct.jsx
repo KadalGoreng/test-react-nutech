@@ -1,7 +1,7 @@
 import React, { useState, useRef } from "react";
 import { toast } from "react-toastify";
 
-export default function UpdateProduct(props) {
+const UpdateProduct = (props) => {
   const { id, nama, hargaBeli, hargaJual, stock, foto, setBarang, barang } =
     props;
 
@@ -32,6 +32,12 @@ export default function UpdateProduct(props) {
   const handleUpdatePhoto = (e) => {
     const file = e.target.files[0];
     const reader = new FileReader();
+
+    if (file && file.size > 100000) {
+      toast.error("Maksimal ukuran foto 100KB!");
+      e.target.value = null;
+      return;
+    }
 
     const allowedExtensions = /(\.jpg|\.png)$/i;
     if (!allowedExtensions.exec(file.name)) {
@@ -163,4 +169,6 @@ export default function UpdateProduct(props) {
       </div>
     </div>
   );
-}
+};
+
+export default UpdateProduct;

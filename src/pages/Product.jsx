@@ -55,7 +55,6 @@ const Product = () => {
       }
     }
   }, [navigate]);
-
   return (
     <div className="min-h-[100vh]">
       <ToastContainer theme="dark" />
@@ -86,33 +85,39 @@ const Product = () => {
             </tr>
           </thead>
           <tbody>
-            {itemsSearch.map((item, index) => (
-              <tr key={item.id}>
-                <td>
-                  <div className="w-32 rounded">
-                    <img src={item.foto.file} />
-                  </div>
-                </td>
-                <td>{item.nama}</td>
-                <td>{`Rp ${formatPrice(item.hargaBeli)}`}</td>
-                <td>{`Rp ${formatPrice(item.hargaJual)}`}</td>
-                <td>{`${item.stock} Unit`}</td>
-                <td>
-                  <div className="flex gap-3">
-                    <UpdateProduct
-                      {...item}
-                      barang={barang}
-                      setBarang={setBarang}
-                    />
-                    <DeleteProduct
-                      id={item.id}
-                      barang={barang}
-                      setBarang={setBarang}
-                    />
-                  </div>
-                </td>
-              </tr>
-            ))}
+            {itemsSearch.length >= 1 ? (
+              itemsSearch.map((item) => (
+                <tr key={item.id}>
+                  <td>
+                    <div className="w-32 rounded">
+                      <img src={item.foto.file} />
+                    </div>
+                  </td>
+                  <td>{item.nama}</td>
+                  <td>{`Rp ${formatPrice(item.hargaBeli)}`}</td>
+                  <td>{`Rp ${formatPrice(item.hargaJual)}`}</td>
+                  <td>{`${item.stock} Unit`}</td>
+                  <td>
+                    <div className="flex gap-3">
+                      <UpdateProduct
+                        {...item}
+                        barang={barang}
+                        setBarang={setBarang}
+                      />
+                      <DeleteProduct
+                        id={item.id}
+                        barang={barang}
+                        setBarang={setBarang}
+                      />
+                    </div>
+                  </td>
+                </tr>
+              ))
+            ) : (
+              <td colSpan="6">
+                <div className="text-center">Barang tidak ditemukan!!!</div>
+              </td>
+            )}
           </tbody>
         </table>
         <ReactPaginate

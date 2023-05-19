@@ -41,6 +41,12 @@ const AddProducts = (props) => {
     const file = e.target.files[0];
     const reader = new FileReader();
 
+    if (file && file.size > 100000) {
+      toast.error("Maksimal ukuran foto 100KB!");
+      e.target.value = null;
+      return;
+    }
+
     reader.onload = (e) => {
       const photo = {
         file: e.target.result,
