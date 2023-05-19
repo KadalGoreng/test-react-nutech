@@ -54,6 +54,17 @@ export default function UpdateProduct(props) {
     e.preventDefault();
 
     if (
+      !payload.nama ||
+      !payload.hargaBeli ||
+      !payload.hargaJual ||
+      !payload.stock ||
+      !payload.foto
+    ) {
+      toast.error("Semua form harus diisi!");
+      return;
+    }
+
+    if (
       barang.find(
         (item) =>
           item.id !== id &&

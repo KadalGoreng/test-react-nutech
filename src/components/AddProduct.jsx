@@ -55,6 +55,17 @@ const AddProducts = (props) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    if (
+      !payload.nama ||
+      !payload.hargaBeli ||
+      !payload.hargaJual ||
+      !payload.stock ||
+      !payload.foto
+    ) {
+      toast.error("Semua form harus diisi!");
+      return;
+    }
+
     const allowedExtensions = /(\.jpg|\.png)$/i;
     if (!allowedExtensions.exec(payload.foto.fileName)) {
       toast.error("Hanya format foto JPG atau PNG yang diperbolehkan!");
