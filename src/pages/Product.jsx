@@ -77,7 +77,6 @@ const Product = () => {
         <table className="table w-full mb-4">
           <thead>
             <tr>
-              <th>NO</th>
               <th>Foto</th>
               <th>Nama Barang</th>
               <th>Harga Beli</th>
@@ -87,9 +86,8 @@ const Product = () => {
             </tr>
           </thead>
           <tbody>
-            {itemsSearch.map((item) => (
+            {itemsSearch.map((item, index) => (
               <tr key={item.id}>
-                <td>{item.id}</td>
                 <td>
                   <div className="w-32 rounded">
                     <img src={item.foto.file} />
